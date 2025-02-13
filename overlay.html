@@ -14,6 +14,7 @@
             background: transparent;
             font-family: monospace;
             color: white;
+            position: relative;
         }
         .overlay {
             padding: 30px;
@@ -22,7 +23,7 @@
             width: 100%;
             max-width: 600px;
             border: 3px solid rgba(255, 255, 255, 0.5);
-            background: rgba(37, 99, 235, 0.7); /* Warna biru seperti punya Reza Arap */
+            background: rgba(37, 99, 235, 0.7);
             backdrop-filter: blur(10px);
         }
         .content {
@@ -35,7 +36,7 @@
             border: 3px solid rgba(255, 255, 255, 0.5);
             border-radius: 15px;
             text-align: center;
-            background: transparent; /* Menghapus background tabel */
+            background: transparent;
         }
         .title {
             font-size: 2rem;
@@ -59,7 +60,7 @@
             font-weight: bold;
         }
         .leaderboard {
-            padding: 70px; /* Memperbesar kotak leaderboard lebih besar lagi */
+            padding: 70px;
             border: 3px solid rgba(255, 255, 255, 0.5);
             border-radius: 15px;
             text-align: center;
@@ -67,7 +68,23 @@
             font-size: 1.5rem;
             font-weight: bold;
             color: white;
-            height: 180px; /* Menambah tinggi leaderboard agar lebih besar */
+            height: 180px;
+        }
+        /* Style untuk iframe */
+        .subathon-iframe {
+            width: 100%;
+            height: 100px; /* Sesuaikan tinggi */
+            border: none;
+            background: transparent;
+        }
+        .alert-iframe {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 400px; /* Bisa disesuaikan */
+            height: 200px; /* Bisa disesuaikan */
+            border: none;
         }
     </style>
 </head>
@@ -77,27 +94,19 @@
             <div class="box title">Support Beli Surya 16</div>
             <div class="box link">saweria.co/dzulqar</div>
             <div class="box leaderboard"></div>
-            <div class="box timer" id="countdown">02:00:00</div>
+            <!-- Timer dari Subathon -->
+            <div class="box timer">
+                <iframe class="subathon-iframe" src="https://saweria.co/widgets/subathon?streamKey=66d4b3058484daa06ecf0b60db047775"></iframe>
+            </div>
         </div>
     </div>
-    
-    <script>
-        let time = 2 * 60 * 60;
-        function updateTimer() {
-            let hours = Math.floor(time / 3600);
-            let minutes = Math.floor((time % 3600) / 60);
-            let seconds = time % 60;
-            document.getElementById("countdown").textContent = 
-                String(hours).padStart(2, "0") + ":" + 
-                String(minutes).padStart(2, "0") + ":" + 
-                String(seconds).padStart(2, "0");
-            if (time > 0) {
-                time--;
-            } else {
-                time = 2 * 60 * 60; // Reset ke 2 jam lagi
-            }
-        }
-        setInterval(updateTimer, 1000);
-    </script>
+
+    <!-- Iframe untuk Alert Saweria -->
+    <iframe 
+        class="alert-iframe"
+        src="https://saweria.co/widgets/alert?streamKey=66d4b3058484daa06ecf0b60db047775"
+        allowtransparency="true"
+        frameborder="0">
+    </iframe>
 </body>
 </html>
