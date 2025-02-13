@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overlay TikTok</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: transparent;
+            font-family: monospace;
+            color: white;
+        }
+        .overlay {
+            padding: 30px;
+            border-radius: 30px;
+            text-align: center;
+            width: 100%;
+            max-width: 600px;
+            border: 3px solid rgba(255, 255, 255, 0.5);
+            background: rgba(37, 99, 235, 0.7); /* Warna biru seperti punya Reza Arap */
+            backdrop-filter: blur(10px);
+        }
+        .content {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .box {
+            padding: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.5);
+            border-radius: 15px;
+            text-align: center;
+            background: transparent; /* Menghapus background tabel */
+        }
+        .title {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        .link {
+            font-size: 1.7rem;
+            font-weight: bold;
+            color: #ffcc00;
+            position: relative;
+            display: inline-block;
+            white-space: nowrap;
+            animation: glow 1.5s infinite alternate ease-in-out;
+        }
+        @keyframes glow {
+            0% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+        .timer {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        .leaderboard {
+            padding: 70px; /* Memperbesar kotak leaderboard lebih besar lagi */
+            border: 3px solid rgba(255, 255, 255, 0.5);
+            border-radius: 15px;
+            text-align: center;
+            background: transparent;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+            height: 180px; /* Menambah tinggi leaderboard agar lebih besar */
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <div class="content">
+            <div class="box title">Support Beli Surya 16</div>
+            <div class="box link">saweria.co/dzulqar</div>
+            <div class="box leaderboard"></div>
+            <div class="box timer" id="countdown">02:00:00</div>
+        </div>
+    </div>
+    
+    <script>
+        let time = 2 * 60 * 60;
+        function updateTimer() {
+            let hours = Math.floor(time / 3600);
+            let minutes = Math.floor((time % 3600) / 60);
+            let seconds = time % 60;
+            document.getElementById("countdown").textContent = 
+                String(hours).padStart(2, "0") + ":" + 
+                String(minutes).padStart(2, "0") + ":" + 
+                String(seconds).padStart(2, "0");
+            if (time > 0) {
+                time--;
+            } else {
+                time = 2 * 60 * 60; // Reset ke 2 jam lagi
+            }
+        }
+        setInterval(updateTimer, 1000);
+    </script>
+</body>
+</html>
