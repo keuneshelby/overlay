@@ -20,7 +20,7 @@
             bottom: 0;
             width: 100%;
             max-width: 600px;
-            padding: 15px;
+            padding: 10px;
             border-radius: 20px 20px 0 0;
             border: 3px solid rgba(255, 255, 255, 0.5);
             background: rgba(37, 99, 235, 0.8);
@@ -28,16 +28,16 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px;
+            gap: 5px;
         }
         .box {
             width: 95%;
-            padding: 12px;
+            padding: 6px;
             border: 3px solid rgba(255, 255, 255, 0.5);
             border-radius: 12px;
             text-align: center;
             background: transparent;
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: bold;
             color: white;
         }
@@ -45,51 +45,41 @@
             background: rgba(0, 0, 0, 0.3);
             color: #ffcc00;
             animation: glow 1.5s infinite alternate ease-in-out;
+            font-size: 1.2rem;
+            animation: glow 1.5s infinite alternate ease-in-out;
         }
         .leaderboard {
-            height: 200px;
-            margin-bottom: 70px;
+            height: 230px;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
+            padding-top: 5px;
         }
         .timer-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
             width: 95%;
-            padding: 12px;
+            padding: 6px;
             border: 3px solid rgba(255, 255, 255, 0.5);
             border-radius: 12px;
             background: transparent;
         }
-        .time-label {
-            font-size: 1.5rem;
+        .time-label, .subhanton-text {
+            font-size: 1.2rem;
             font-weight: bold;
-            margin-right: 10px;
         }
-        .current-time {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: white;
-        }
-        .time-display {
-            font-size: 1.5rem;
-            font-weight: bold;
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            padding: 5px 10px;
-            border-radius: 8px;
-        }
-        .subhanton-text {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: yellow;
-        }
-        .subhanton-frame {
+        .time-frame, .subhanton-frame {
             width: 100px;
             height: 30px;
-            border: 2px solid rgba(255, 255, 255, 0.5);
+            border: 3px solid rgba(255, 255, 255, 0.5);
             border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: white;
         }
         @keyframes glow {
             0% { opacity: 1; }
@@ -99,15 +89,18 @@
 </head>
 <body>
     <div class="overlay">
-        <div class="box">💙 Support Beli Surya 16 💙</div>
+        <div class="box">🔥 JADILAH BAGIAN DARI PERJALANAN STREAMER INI 🔥</div>
         <div class="box link">🔗 saweria.co/dzulqar</div>
         <div class="box leaderboard">🏆 Leaderboard</div>
         <div class="timer-container">
-            <div class="time-label">TIME:</div>
-            <div class="current-time" id="currentTime">00:00:00</div>
-            <div class="time-display" id="countdown">02:00:00</div>
-            <div class="subhanton-text">SUBHANTON</div>
-            <div class="subhanton-frame"></div>
+            <div style="display: flex; align-items: center; gap: 5px;">
+                <div class="time-label">TIME:</div>
+                <div class="time-frame" id="currentTime">00:00:00</div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 5px;">
+                <div class="subhanton-text">SUBHANTON</div>
+                <div class="subhanton-frame"></div>
+            </div>
         </div>
     </div>
     
@@ -120,24 +113,6 @@
             document.getElementById("currentTime").textContent = `${hours}:${minutes}:${seconds}`;
         }
         setInterval(updateCurrentTime, 1000);
-
-        let time = 2 * 60 * 60;
-        function updateTimer() {
-            let hours = Math.floor(time / 3600);
-            let minutes = Math.floor((time % 3600) / 60);
-            let seconds = time % 60;
-            document.getElementById("countdown").textContent = 
-                String(hours).padStart(2, "0") + ":" + 
-                String(minutes).padStart(2, "0") + ":" + 
-                String(seconds).padStart(2, "0");
-            if (time > 0) {
-                time--;
-            } else {
-                time = 2 * 60 * 60;
-            }
-        }
-        
-        setInterval(updateTimer, 1000);
     </script>
 </body>
 </html>
