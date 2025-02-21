@@ -97,12 +97,18 @@
         .donation-fill {
             height: 100%;
             width: 0%; /* Progress awal */
-            background: #ffcc00;
+            background: linear-gradient(90deg, #ffcc00, #ff9900);
             transition: width 0.5s ease-in-out;
+            animation: shimmer 2s infinite linear;
         }
         @keyframes glow-yellow {
             0% { opacity: 1; }
             100% { opacity: 0.5; }
+        }
+        @keyframes shimmer {
+            0% { opacity: 0.8; }
+            50% { opacity: 1; }
+            100% { opacity: 0.8; }
         }
     </style>
 </head>
@@ -139,13 +145,11 @@
         setInterval(updateCurrentTime, 1000);
 
         function updateDonationProgress(currentAmount) {
-            let targetAmount = 500000;
+            let targetAmount = 10000;
             let percentage = (currentAmount / targetAmount) * 100;
             document.getElementById("donationBar").style.width = percentage + "%";
         }
-        
-        // Contoh update donasi (ganti dengan nilai sebenarnya)
-        updateDonationProgress(150000); // Rp150.000 dari Rp500.000
+        updateDonationProgress(1500); 
     </script>
 </body>
 </html>
