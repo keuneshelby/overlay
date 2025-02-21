@@ -2,34 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Overlay TikTok</title>
+    <meta name="viewport" content="width=1080, height=435, initial-scale=1.0">
+    <title>Overlay OBS Biru</title>
     <style>
         body {
             margin: 0;
+            width: 1080px;
+            height: 435px;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
             background: transparent;
             font-family: monospace;
             color: white;
+            overflow: hidden;
         }
         .overlay {
-            position: fixed;
+            position: absolute;
             bottom: 0;
-            width: 100vw;
-            height: 640px;
+            width: 1080px;
+            height: 435px;
             padding: 10px;
             border-radius: 20px 20px 0 0;
             border: 3px solid rgba(255, 255, 255, 0.5);
-            background: rgba(37, 99, 235, 0.8);
+            background: rgba(0, 102, 255, 0.8);
             backdrop-filter: blur(10px);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 3px; /* Merapatkan jarak antar elemen */ /* Mengurangi jarak antar elemen */
+            gap: 3px;
         }
         .box {
             width: 90%;
@@ -47,16 +49,12 @@
             color: #ffcc00;
             animation: glow 1.5s infinite alternate ease-in-out;
             font-size: 1.2rem;
-            animation: glow 1.5s infinite alternate ease-in-out;
         }
         .leaderboard {
-            height: 350px; /* Memperbesar leaderboard agar lebih proporsional */
+            height: 200px;
             width: 90%;
-            display: block; /* Mengubah dari flex ke block agar tulisan berada di atas */
             text-align: center;
-            padding-top: 10px; /* Memberikan jarak atas agar tulisan tidak terlalu mepet */
-            justify-content: center;
-            align-items: center;
+            padding-top: 10px;
             font-size: 1.5rem;
             font-weight: bold;
             padding: 10px;
@@ -70,7 +68,8 @@
             border: 3px solid rgba(255, 255, 255, 0.5);
             border-radius: 12px;
             background: transparent;
-            margin-top: 5px; /* Merapatkan ke leaderboard */
+            margin-top: 5px;
+            position: relative;
         }
         .time-label, .subhanton-text {
             font-size: 1.2rem;
@@ -88,6 +87,23 @@
             font-weight: bold;
             color: white;
         }
+        #currentTime {
+            color: white;
+        }
+        .center-text {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ffcc00;
+            animation: glow-yellow 2s infinite alternate ease-in-out;
+            padding: 5px 10px;
+        }
+        @keyframes glow-yellow {
+            0% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
         @keyframes glow {
             0% { opacity: 1; }
             100% { opacity: 0.7; }
@@ -96,13 +112,15 @@
 </head>
 <body>
     <div class="overlay">
-        <div class="box">🔥 JADILAH BAGIAN DARI PERJALANAN STREAMER INI 🔥</div>
-        <div class="box link">🔗 saweria.co/dzulqar</div>
+        <div class="box link">Where the best shows feel like home.</div>
         <div class="box leaderboard">🏆 Leaderboard</div>
         <div class="timer-container">
             <div style="display: flex; align-items: center; gap: 5px;">
-                <div class="time-label">TIME:</div>
+                <div class="time-label">JAM:</div>
                 <div class="time-frame" id="currentTime">00:00:00</div>
+            </div>
+            <div class="center-text">
+                <a href="https://saweria.co/dzulqar" target="_blank" style="color: #ffcc00; text-decoration: none; font-weight: bold;">🔗 saweria.co/dzulqar</a>
             </div>
             <div style="display: flex; align-items: center; gap: 5px;">
                 <div class="subhanton-text">SUBHANTON</div>
@@ -110,7 +128,6 @@
             </div>
         </div>
     </div>
-    
     <script>
         function updateCurrentTime() {
             let now = new Date();
